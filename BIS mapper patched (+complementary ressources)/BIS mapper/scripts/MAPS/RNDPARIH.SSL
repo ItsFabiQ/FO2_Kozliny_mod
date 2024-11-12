@@ -1,0 +1,48 @@
+/*
+	Copyright 1998-2003 Interplay Entertainment Corp.  All rights reserved.
+*/
+
+/*
+   Random Pariah Dog Encounter fun..
+*/
+
+#include "..\headers\define.h"
+#include "..\headers\updatmap.h"
+
+#define NAME                    SCRIPT_RNDPARIH
+
+#include "..\headers\command.h"
+#include "..\headers\rndParih.h"
+
+procedure start;
+procedure map_enter_p_proc;
+procedure map_update_p_proc;
+procedure map_exit_p_proc;
+
+procedure start begin
+end
+
+procedure map_exit_p_proc begin
+   if (global_var(GVAR_PLAYER_GOT_CAR) != 0 and car_current_town == AREA_SPECIAL_RND_PARIAH) then begin
+       car_give_to_party;
+   end
+end
+
+procedure map_enter_p_proc begin
+   Lighting;
+
+   set_global_var(GVAR_SPECIAL_ENCOUNTER_PARIAH, 1);
+
+   if ((map_var(MVAR_Made_Car) == 0) and (global_var(GVAR_PLAYER_GOT_CAR) != 0) and (car_current_town == AREA_SPECIAL_RND_PARIAH)) then begin
+       set_map_var(MVAR_Made_Car,1);
+       Create_Car(CAR_RND_PARIAH_HEX,CAR_RND_PARIAH_ELEV)
+   end
+   else if ((map_var(MVAR_Made_Car) == 1) and (car_current_town != AREA_SPECIAL_RND_PARIAH)) then begin
+       set_map_var(MVAR_Made_Car,0);
+       Dest_Car(CAR_RND_PARIAH_HEX,CAR_RND_PARIAH_ELEV)
+   end
+end
+
+procedure map_update_p_proc begin
+   Lighting;
+end

@@ -1,0 +1,59 @@
+/*
+	Copyright 1998-2003 Interplay Entertainment Corp.  All rights reserved.
+*/
+
+/*
+        Name:
+        Location: Den
+        Description:
+
+        Log:
+
+           Created: August 22, 1998
+
+           Updated:
+*/
+
+
+/* Include Files */
+#include "..\headers\define.h"
+
+#define NAME                    SCRIPT_DIFLIBOX
+
+#include "..\headers\command.h"
+
+#define LVAR_RESTOCK_TIME                       (0)
+
+import variable den_flick_box_obj;
+
+procedure start;
+procedure map_enter_p_proc;
+
+procedure start begin
+   den_flick_box_obj := self_obj;
+end
+
+procedure map_enter_p_proc begin
+/* Set up the door state when the player first enters the map */
+   den_flick_box_obj := self_obj;
+   if (is_loading_game == false) then begin
+      if (local_var(LVAR_RESTOCK_TIME) < game_time) then begin
+         item_caps_adjust(self_obj, random(55, 61) - self_caps);
+         check_restock_item(PID_JET, 0, 1, 100)
+         check_restock_item(PID_CATS_PAW, 0, 1, 100)
+         check_restock_item(PID_10MM_JHP, 1, 3, 100)
+         check_restock_item(PID_LEATHER_ARMOR, 1, 1, 45)
+         check_restock_item(PID_BEER, 0, 6, 100)
+         check_restock_item(PID_BOOZE, 0, 3, 100)
+         check_restock_item(PID_NUKA_COLA, 0, 2, 100)
+         check_restock_item(PID_44_MAGNUM_REVOLVER, 1, 3, 100)
+         check_restock_item(PID_44_MAGNUM_JHP, 1, 5, 100)
+         check_restock_item(PID_STIMPAK, 0, 3, 100)
+         check_restock_item(PID_HUNTING_RIFLE, 1, 1, 50)
+         check_restock_item(PID_223_FMJ, 1, 3, 100)
+         check_restock_item(PID_SHOTGUN, 1, 1, 50)
+         check_restock_item(PID_SHOTGUN_SHELLS, 2, 4, 100)
+         set_local_var(LVAR_RESTOCK_TIME, (random(2,4) * ONE_GAME_DAY) + game_time);
+      end
+   end
+end

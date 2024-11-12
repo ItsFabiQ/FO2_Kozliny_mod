@@ -1,0 +1,5 @@
+I wish to pass onto the Fallout modding community these image files. They consist of every artwork from Fallout 1 and Fallout 2 laid out in their individual categories (as found in the Fallout mapper) – Critters – Items – Inventory – Misc - Scenery – Tiles – Walls. 
+
+Each individual artwork has a corresponding number (PID order from the Mapper), name/description, and for the walls their individual direction (i.e. East/West). These files could be considered very useful for modders, (when they need to find individual artworks without having to scroll through the several thousand that were built by Black Isle) or for any fan who would like to appreciate the beauty of the original artwork. There 23 files all up at with a combined size of 22mb. You can down load each individual file, or all of the images in one compressed file…enjoy.
+
+Pixote

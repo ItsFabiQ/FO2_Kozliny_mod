@@ -1,0 +1,4 @@
+[Main] Initializing Direct3D... Done
+[Main] Creating D3D9 Device... Done
+[Main] Game initalized in: 1005770 us
+[Main] New Game started in: 755885 us

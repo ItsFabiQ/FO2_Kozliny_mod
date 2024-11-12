@@ -1,0 +1,48 @@
+/*
+	Copyright 1998-2003 Interplay Entertainment Corp.  All rights reserved.
+*/
+
+/*
+        Map Script for Sierra Army Base, Outside area
+*/
+
+#include "..\headers\define.h"
+#include "..\headers\updatmap.h"
+#include "..\headers\v13ent.h"
+
+#define NAME                    SCRIPT_V13ENT
+
+#include "..\headers\command.h"
+
+export variable i_vault13_door;
+
+procedure start;
+procedure map_enter_p_proc;
+procedure map_update_p_proc;
+
+procedure start begin
+end
+
+procedure map_enter_p_proc begin
+   Cavern_Lighting;
+
+   i_vault13_door := -1;
+
+   set_f2(f2_state_v13_found);
+
+   Check_Create_Car(CAR_VAULT_13_HEX, CAR_VAULT_13_ELEV)
+
+   if (not is_loading_game) then begin
+      debug_msg("V13ENT: FIXED_PRAM " + fixed_param);
+      if (global_var(GVAR_LOAD_MAP_INDEX) == 5) then begin
+         override_map_start_hex(17290,0,2);
+         set_global_var(global_var(GVAR_LOAD_MAP_INDEX), 0);
+      end else begin
+         override_map_start_hex(26148,0,1);
+      end
+   end
+end
+
+procedure map_update_p_proc begin
+   Cavern_Lighting;
+end

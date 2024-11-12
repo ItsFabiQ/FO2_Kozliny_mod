@@ -1,0 +1,81 @@
+#
+# holodisk.txt
+#
+# Controls display of holodisks in the pipboy.
+#
+# format of each line is:
+#
+#   gvar, title, text
+#
+# where:
+#
+#   gvar is the GVAR_* number for the variable corresponding to the holodisk.
+#
+#   title is the number of the message in pipboy.msg with the title of the holodisk.
+#
+#   text is the number of the message in pipboy.msg where the text for the holodisk
+#     starts.  Numbers in the range of (text)-(text+500) are used for that holodisk.
+#
+
+# GVAR_NCR_FAKE_VAULT13_HOLODISK
+#214, 400, 1000
+
+# GVAR_HOLODISK_MB_OUTSIDE
+220, 401, 2000
+
+# GVAR_HOLODISK_MB_LEVEL_1
+221, 402, 3000
+
+# GVAR_HOLODISK_MB_LEVEL_2
+222, 403, 4000
+
+# GVAR_HOLODISK_MB_LEVEL_3
+223, 404, 5000
+
+# GVAR_HOLODISK_MB_LEVEL_4
+224, 405, 6000
+
+# GVAR_HOLODISK_SIERRA_EXP_LOG
+166, 406, 7000
+
+# GVAR_HOLODISK_SIERRA_MED_LOG
+165, 407, 8000
+
+# GVAR_HOLODISK_SIERRA_EVACUATION
+164, 408, 9000
+
+# GVAR_SIERRA_GNN_HOLODISK
+520, 409, 11000
+
+# GVAR_SIERRA_MISSION_HOLODISK
+521, 410, 10000
+
+# GVAR_ELRON_HOLODISK
+522, 411, 12000
+
+# GVAR_VAULT_CITY_DESIGNER_NOTES
+541, 412, 13000
+
+# GVAR_VAULT_CITY_DESIGNER_NOTES
+404, 413, 14000
+
+# GVAR_NCR_SPY_HOLO_DOWNLOAD
+595, 414, 15000
+
+# GVAR_NCR_HISTORY_HOLO_DOWNLOAD
+596, 415, 16000
+
+# GVAR_NCR_WESTIN_HOLO_DOWNLOAD
+597, 416, 17000
+
+# GVAR_HOLODISK_ENCLAVE_STATE          (574)
+574, 417, 18000
+
+# GVAR_HOLODISK_ENCLAVE_WORD           (575)
+575, 418, 19000
+
+# GVAR_HOLODISK_ENCLAVE_CHEMICAL       (576)
+576, 419, 20000
+
+# GVAR_HOLODISK_ENCLAVE_ATOMIC         (577)
+577, 420, 21000

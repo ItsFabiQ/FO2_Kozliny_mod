@@ -1,0 +1,364 @@
+Fallout Key layout for the editor and game                           Version 1.6
+ by Red! (Sebastien Caisse, [email]red_nnnno@hotmail.com[/email])
+
+- [ Introduction ] -
+When there's a slash ("/"), the left part is in game mode (F8, and usually works
+in the normal game) while the right is in the editor. Most of the normal game
+functions still work in the editor - moreso in the game mode of course. The M
+key is especially useful for selecting critters as it doesn't have the issue of
+"clicking a bunch of time until you hit the critter" problem mentioned in the
+documentation since you know exactly where you click. If there's a third slash
+in the command then these are commands available in the dialog windows. When
+there's a slash with nothing in front or after it, it means the command isn't
+available in that mode.
+
+Fallout2/Mapper2 does not block out any of the windows key combinations so all
+Windows-specific keys will work (Win, Win-B, Win-D, Win-E, Win-F, Win-L, Win-M,
+Win-U, Win-Pause, Alt-Tab, Alt-Shift-Tab, Alt-Esc, Alt-Shift-Esc, Ctrl-Alt-Del,
+Ctrl-Esc - Some of the listed combinations might not work depending on you OS
+version). Additionally, keyboard with extra "Multimedia" or "Internet" keys
+handle those keys as should be. External "HotKey" programs should work as
+expected in the game given that there is no special handling done on the
+keyboard input.
+
+- [ Key mappings ] -
+A: Attack/
+B: Switch attack weapon/Fix map objects to PIDs (same as menu)/Barter
+C: Character/Copy note: When using copy, only the current proto selection are
+   copied. This also works for tiles!
+F: Toggle FPS display
+D: Switch light level look of map (day, night et al)
+E: /Edit selected proto
+I: Inventory/List scripts (same as menu)
+K: Kill critter (and recucitate!)
+L: Lock (doors)/Give 500xp to OBJ_DUDE
+M: Mouse-Hex cursor toggle
+N: Switch attack mode/Advance 1 month
+O: Options
+P: Pipboy/Find selected proto under cursor in selection area
+Q: Make walls and generic scenery semi-transparent
+R: Toggles roofs on and off
+S: Skilldex/
+T: Advance 1 minute/Open edit mode menu
+U: /Use item (open or close)
+S: /Place location script
+W: Worldmap (Note: if PROs are read-only, it crashes)
+Z: Rest/
+?: Display game time
+[,]: /One step change of daylight
++,-: Adjust brightness level/Move proto list right and left; if you selected a
+     pattern, it allows you to "paste" a greater region of the pattern (Thanks
+     to temaperacl for not updating me about this)
+,,.: Rotate OBJ_DUDE left and right/
+End: Go to last item in proto list
+Del: Go in delete mode (same as button in UI)
+Page up,Page down: Change map level
+Up,Down,Left,Right: Move POV
+Home: Return POV to map level origin
+Esc: Cancel menu/or quit editor
+Tab, Ctrl-I: Pipboy Map (When in game mode it displays more data. 
+             Ctrl-I is the usual code to represent a tab.)
+
+Left-Click: Move to, look/Select Item
+Right-Click: Change attack mode/Cancel current action
+Note: When placing tiles, instead of clicking repeatably on the mouse to place
+      a bunch of them, leave the mouse pressed and move the mouse slowly. Even
+      though it's a somewhat slower process I find it much more satisfying then
+      trying to play Diablo in the editor.
+Ctrl-Left-Click: Place multiple proto onto map (for items)
+
+Alt-A: Save As
+Alt-B: Edit OBJ_DUDE - Notes: as in the menu, and as with the menu, when exiting
+			 this function it leaves the screen mostly black. Press F8 to play the map
+			 with the modified OBJ_DUDE. Note that every second time, it won't work so
+			 you'll need to press F8 until it restors the colors.
+Alt-F: File menu
+Alt-G: Shift map (use Left/Right/Up/Down keys to move map)
+Alt-H: Behaves like P but crashes the application if you're using the wrong type
+       of proto (click on a critter while in Tile mode). It seems to read all
+       the protos of the type you selected.
+Alt-I: Load text map (disabled - same as menu)
+Alt-N: New map
+Alt-O: Open map
+Alt-P: Save text map (need to have a (saved) name for the map first or it will
+       crash, you can then use "Rebuild all maps" to generate the maps from the
+       text files)
+Alt-S: Save
+Alt-T: Scripts menu
+Alt-V: Tools menu
+Alt-W: Set map script
+Alt-Y: Use pattern
+
+Ctrl-F: /Disable sound effect cache
+Ctrl-J,Ctrl-Enter: Give object to OBJ_DUDE
+Ctrl-L: Load savegame
+Ctrl-N: Advance 1 month
+Ctrl-P: Pause
+Ctrl-Q, Ctrl-X: Quit/
+Ctrl-T: Adance 1 day
+Ctrl-S: Save game/
+Ctrl-V: Version
+Ctrl-End: Go to proto 0 in list
+Ctrl-Up/Ctrl-Down: Rotate critter North/South
+Crtl-Left/Ctrl-Right: Rotate crirtter Left/Right
+Ctrl-/:In the Ctrl-J,Ctrl-Enter menu, allows you to give multiple number of
+       an item depending on which page you are (weird).
+
+1:Use Sneak skill/Goto bookmark 1/Answer 1
+2:Use Lockpick skill/Goto bookmark 2/Answer 2
+3:Use Steal skill/Goto bookmark 3/Answer 3
+4:Use Traps skillGoto bookmark 4/Answer 4
+5:Use First aid skill/Goto bookmark 5/Answer 5
+6:Use Doctor skill/Goto bookmark 6/Answer 6
+7:Use Science skill/Goto bookmark 7/Answer 7
+8:Use Repair skill/Goto bookmark 8/Answer 8
+9:/Goto bookmark 9/Answer 9 (can there even be 9 answers in a dialog?)
+0:/Goto bookmark 0/Exit dialog
+
+F1: Help/Select items
+F2: /Select critters
+F3: /Select scenery
+F4: Save/Select walls
+F5: Load savegame/Select tiles
+F6: Quick save/Select misc
+F7: Quickload savegame
+F8: Switch to and from game mode. Note that going and leaving the game mode
+    restores the POV to it's start hex.
+F9: /Rebuild item protos (Librarian menu - need librarian=1 in cfg)
+F10: Quit/Rebuild proto lists (Librarian menu - need librarian=1 in cfg)
+F11: /Rebuild all (Librarian menu - need librarian=1 in cfg)
+F12: Screenshot 
+
+Alt-F4: Real game only - Quit
+Alt-F7: /Takes snapshots of the map to build a series of tiles which when placed
+         together allows you to see the entire map. The current POV needs to be
+         inside the scroll blockers for this to work properly
+
+Ctrl-F1: /Toggle Items display (doesn't upate UI)
+Ctrl-F2: /Toggle Critters display (doesn't upate UI)
+Ctrl-F3: /Toggle Scenery display (doesn't upate UI)
+Ctrl-F4: /Toggle Walls display (doesn't upate UI)
+Ctrl-F5: /Toggle Tiles display (doesn't upate UI)
+Ctrl-F6: /Toggle Misc display (doesn't upate UI)
+Ctrl-F7: /Delete script
+Ctrl-F12 Switch between game only and Old Mapper mode/
+
+Shift commands note: If a command is assigned in the game with the normal key,
+then using it with the Shift key ends up using that command as in the game. If
+isn't used in the game but is in the editor, then it will use the editor
+command. Except for [Special thanks to temaperacl about the Shift which I didn't
+check thinking it wasn't used]:
+Shift-A: /Destroy all scripts
+Shift-B: /Crashes
+Shift-L: Gain level
+Shift-C: /Copy All (Same as UI: copy everything except tiles)
+Shift-W: World Map/Assign hotkeys (?)
+Shift-K: /Kill critter and choose death
+
+Shift-F9: Edit AI packet for critter (Notes: Crashes on second try, you'll need
+          to know the packet AI number as the game always pops up the same, when
+          selecting "Done" without selecting any item in the various lists it
+          usually pops up a dialog which permits you to type the string instead
+          of selecting it in the menu. If you type a non-existing string, the
+          editor will create a new entry for you. You cannot add or remove new
+          AI scripts without modifying the executable. You can edit more then
+          one AI entity while in the menu by changing the AI number before
+          pressing done.)
+Shift-F11: Edit stats for critter
+Shift-+ or Keypad +,Shift--: /Move proto list right or left by 10
+
+- [ Map keys ] -
+You can use the 0 though 9 keys to access any of the defined entrances on a map
+(accessed from the worldmap on any other occasion then the first). This will
+work regardless of wether you can see the entry point on the map or not and also
+works in the normal game (sadly).
+
+- [ Generic Keys ] -
+The options menu can be driven using the first letter of the button you wish to
+select. The same can be said with Yes/No dialogs, as well as the real game's
+main menu and various sub-menus (ie: load menu, create new char menu, etc...)
+Lists can be handled with Up/Down buttons, as well as Page Up and Page Down when
+the list has more items then the area can display.
+In addition, various element lists (such as a file list) can be controlled by
+typing the first letter of the item you're looking for (for example, type D to
+skip to the first D file in the map list when loading a map).
+Pressing Enter is equivalent to clicking OK.
+Pressing Escape cancels the dialogs.
+
+- [ Librarian mode ] -
+The librarian menu can be toggled on with override_librarian=1 in the cfg, note
+that while it's enabled you can't save your map.
+
+- [ Loading saved games ] -
+You can load games into the editor, note however that the game's files are used
+instead of the ones found in the directories and/or the DATs when possible. Also
+note that if you extracted and modified PRO files in your "working" directory,
+chances are loading the savegame will delete them so you'd need to make them
+read-only - also see the W key above about this. Additionally there seems to be
+problems in using edited PROs in savegames as their map properties are not
+updated in the actual savegame.
+
+- [ Editing PRO files ] -
+To get the PRO files to be editable, on the same drive that you run the mapper,
+create /fallout2/dev/proto, and in it place the directories critters, items,
+scenery, tiles, walls and misc. Once that's done you can edit the PRO files by
+simply Right-Clicking on them with the mouse and Clicking the Edit button (or
+pressing E). You also need to make sure that librarian is set to 1 in the cfg
+(and preferably librarian_override still set to 0 if you still want to be able
+to save maps).
+
+An important note is that each PRO contains it's own PID in the file. If you
+copy a PRO file to overwrite another one or create a new one at the end of the
+list, you'll need to make sure the internally contained PID matches the it's own
+critter.lst line number. You could hex edit it, or:
+- edit the proto, thus creating the text file reference;
+- rebuild the protos (F9, see above, though you might need to use F11).
+
+Here's a sample of how it looks on my drive for reference (in hopes it looks
+good in whatever media you read this in...)
+E:\
+\---fallout2
+   \---dev
+       \---proto
+           +---critters
+           +---items
+           +---scenery
+           +---tiles
+           +---walls
+           \---misc
+
+- [ Bookmarks ] -
+Bookmarks deserve a spacial entry: they are saved right beside the map in the
+same name as the map's but with the .cfg extention when you save your game. When
+loading the map it will automatically load the bookmarks. If none exist, the
+mapper will keep the current bookmark set in memory for any new map and use it.
+This means that if you edited a map and are rather happy with your bookmarks,
+you can first load that map to read the bookmarks and then load the map you wish
+to edit. If the bookmarks aren't working then it's most probably because you've
+already toyed with the map and the .cfg already exists and is thus read (with
+no bookmarks set); as such you should probably delete it's .cfg file to import
+your veforite bookmarks.
+
+- [ Recording mode ] -
+In the game's main menu hit Ctrl-R. This will ask you to load a map and then
+select a name (for the recording). You've now started a recording and to exit
+you'll need to hit Ctrl-R again. Once recorded, Fallout 2 will play the
+recording every other time instead of the main movie. If there's more then one
+recording it'll iterate through each of them (as well as the main movie - thanks
+to Temaperacl, again, for verifying this). You can also use this trick to load
+the map you wish and play it in the real game by saving the game, quitting the
+recording and loading your recently saved game.
+
+- [ Debug Mode ] -
+The mapper, like the game, can be run in debug mode. Unlike the game, the mapper
+doesn't need to be hacked to access it. All you need is to set the DEBUGACTIVE
+environment variable to GNW (For a debug right on the screen) or LOG to create
+the file debug.log in your Fallout 2 directory.
+
+Thanks to noid for originally finding out about the debug mode and releasing a
+patch and information about how to use it for the game. See said patch for
+further informations about the options available in the cfg.
+
+- [ Editor UI Specific Keys ] -
+Slashes ("/") seperate here the proto editing (left side) and the instance
+editing (right side). Note that usually the same command works for the instance
+when availble then it is for the proto. For sakes of simplicity commands which
+were similar (ie: at worst, press or release shift in relation to the protos)
+were omitted.
+These are keys which can be used in various dialogs which pop up in the editor,
+mostly for editing protos:
+
+[,]: "<<" and ">>" buttons
+-,+: "(*" and "*)" buttons
+Enter,Ctrl-M: Done (Ctrl-M is the usual keycode used to represent Enter)
+Esc: Cancel
+Shift-[,Shift-]: Scroll left-right 10 in SCENERY list (regardless of wether
+		 						 your're editing a scenery). This can be used to your advantage
+		 						 if you have the version of the game where kids are removed as
+		 						 when reaching the kid, the UI doesn't go further using the
+		 						 left/right button. Simply use Shift-] to skip over it and
+		 						 scroll back using the left button. If you set a item (for
+		 						 example) to a scenery reference, the graphic will still act as
+		 						 a scenery, not as an item. So you can't abuse this feature to
+		 						 make other proto types out of sceneries.
+
+Tiles:
+M: Material
+N: Name
+F: Flags (Saved, but are they even used?)
+
+Scenery:
+D: Description
+E: /Set destination elevation
+F: Flags
+I: Sound ID
+L: Light
+N: Name
+M: Material/Destination map number
+S: /New script
+T: Type/Destination tile, elevator type
+Shift-S: Script
+Shift-W: Walkthrough
+
+Critters:
+1: Stats screen for critter
+2: Stats screen for OBJ_DUDE. Note that when done it returns to the map instead.
+   You'll need to press esc to return to the editing UI.
+A: Action point bonus
+B: Body type
+C: Critical bonus/Clear inventory
+D: Description
+F: Flags
+H: Talking head Fid
+I: /Add to inventory
+L: Light
+N: Name
+R: Damage resitance
+S: Sequence damage bonus (note that it displays Melee damage instead!)
+V: /View inventory
+Shift-1: Critter flags
+Shift-A: AI Packet
+Shift-B: Barter
+Shift-D: Damage type
+Shift-H: HP Bonus
+Shift-K: Kill type
+Shift-R: Damge threshold
+Shift-S: Script
+Shift-T: Team number
+Shift-U: Action flags (Useable)
+Shift-X: Experience
+
+Walls:
+D: Description
+F: Falgs
+L: Light
+N: Name
+Shift-U: Action flags (useable)
+Shift-S: Script
+
+Misc:
+F: Flags
+D: Description
+N: Name
+
+Items:
+1..9,Shift-1..Shift-9: Specfic item type options. Note that the drugs type has
+                       the keys seperated into an upper and lower part.
+W: Weight
+T: Item Type
+I: Sound ID
+S: Size
+D: Description
+F: Flags
+L: Lighting
+V: Cost (Value)
+N: Name
+M: Material
+Shift-U: Action flags (Useable)
+Shift-I: Inventory FID
+Shift-S: Script
+
+Flags: (whenever in a edit flags menu)
+1..0,-,Shift--,Shift-1,Shift-2: Toggle options. Note that some options which are
+                                not displayed can be toggled but who knows what
+                                they do and what happens if you toggle them.

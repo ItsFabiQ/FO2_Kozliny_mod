@@ -1,0 +1,609 @@
+/*
+	Copyright 1998-2003 Interplay Entertainment Corp.  All rights reserved.
+*/
+
+/*
+        Name: Car Trunk
+        Location: Arroyo
+
+        Log:
+           Please note any changes that have been made to the file in Updated. Then comment
+           the code which you have changed/altered/commented out. Please, do not delete any
+           code which was written.
+
+           Created: December 04, 1997
+
+           Updated:
+*/
+
+/* Include Files */
+
+/* Note, the Following Lines need to be in this order so that
+   the script will be compilable. The define Name is referenced
+   in a module from define.h and used in command.h. Please do
+   not change the ordering.
+        -rwh2   11/13/97
+*/
+#include "..\headers\define.h"
+#include "..\headers\updatmap.h"
+
+#define NAME                    SCRIPT_ZICRTRNK
+
+#include "..\headers\command.h"
+#include "..\headers\NewReno.h"
+
+#define Place_Trunk(Hex,Elevation)      tile:=tile_num_in_direction(Hex,5,2);                   \
+                                        tile:=tile_num_in_direction(tile,4,1);                  \
+                                        move_to(self_obj,tile,Elevation)
+
+/* Standard Script Procedures */
+procedure start;
+procedure map_enter_p_proc;
+procedure map_update_p_proc;
+procedure Shadow_Area;
+procedure use_p_proc;
+
+procedure Raiders_Place;
+
+#define LVAR_In_Party           (0)
+
+variable tile;
+
+procedure start begin
+end
+
+procedure use_p_proc begin
+   debug_msg("Using Car Trunk");
+end
+
+procedure map_enter_p_proc begin
+   variable tile;
+
+   if (global_var(GVAR_PLAYER_GOT_CAR) != 0) then begin
+       if (car_current_town == AREA_ARROYO) then begin
+           if (cur_map_index == MAP_ARROYO_BRIDGE) then begin
+               Place_Trunk(CAR_ARROYO_HEX,CAR_ARROYO_ELEV);
+               set_obj_visibility(self_obj,0);
+           end
+           else begin
+               set_obj_visibility(self_obj,1);
+           end
+       end
+
+       else if (car_current_town == AREA_DEN) then begin
+           if (cur_map_index == MAP_DEN_ENTRANCE) then begin
+               Place_Trunk(CAR_DEN_HEX,CAR_DEN_ELEV);
+               set_obj_visibility(self_obj,0);
+           end
+           else begin
+               set_obj_visibility(self_obj,1);
+           end
+       end
+
+       else if (car_current_town == AREA_KLAMATH) then begin
+           if (cur_map_index == MAP_KLAMATH_1) then begin
+               Place_Trunk(CAR_KLAMATH_HEX,CAR_KLAMATH_ELEV);
+               set_obj_visibility(self_obj,0);
+           end
+           else begin
+               set_obj_visibility(self_obj,1);
+           end
+       end
+
+       else if (car_current_town == AREA_MODOC) then begin
+           if (cur_map_index == MAP_MODOC_MAINSTREET) then begin
+               Place_Trunk(CAR_MODOC_HEX,CAR_MODOC_ELEV);
+               set_obj_visibility(self_obj,0);
+           end
+           else begin
+               set_obj_visibility(self_obj,1);
+           end
+       end
+
+       else if (car_current_town == AREA_VAULT_CITY) then begin
+           if (cur_map_index == MAP_VAULTCITY_COURTYARD) then begin
+               Place_Trunk(CAR_VAULT_CITY_HEX,CAR_VAULT_CITY_ELEV);
+               set_obj_visibility(self_obj,0);
+           end
+           else begin
+               set_obj_visibility(self_obj,1);
+           end
+       end
+
+       else if (car_current_town == AREA_GECKO) then begin
+           if (cur_map_index == MAP_GECKO_SETTLEMENT) then begin
+               Place_Trunk(CAR_GECKO_HEX,CAR_GECKO_ELEV);
+               set_obj_visibility(self_obj,0);
+           end
+           else begin
+               set_obj_visibility(self_obj,1);
+           end
+       end
+
+       else if (car_current_town == AREA_BROKEN_HILLS) then begin
+           if (cur_map_index == MAP_BROKEN_HILLS1) then begin
+               Place_Trunk(CAR_BROKEN_HILLS_HEX,CAR_BROKEN_HILLS_ELEV);
+               set_obj_visibility(self_obj,0);
+           end
+           else begin
+               set_obj_visibility(self_obj,1);
+           end
+       end
+       else if (car_current_town == AREA_NEW_RENO) then begin
+           if ((cur_map_index == MAP_NEW_RENO_1) and (car_at_new_reno_1)) then begin
+               Place_Trunk(CAR_NEW_RENO_HEX, CAR_NEW_RENO_ELEV);
+               set_obj_visibility(self_obj,0);
+           end else if ((cur_map_index == MAP_NEW_RENO_CHOP_SHOP) and (car_at_chop_shop)) then begin
+               Place_Trunk(CAR_NEW_RENO_CHOP_SHOP_HEX, CAR_NEW_RENO_ELEV);
+               set_obj_visibility(self_obj,0);
+           end else begin
+               set_obj_visibility(self_obj,1);
+           end
+       end
+       else if (car_current_town == AREA_GOLGATHA) then begin
+           Place_Trunk(CAR_GOLGATHA_HEX,CAR_GOLGATHA_ELEV);
+           set_obj_visibility(self_obj,0);
+       end
+       else if (car_current_town == AREA_RENO_STABLES) then begin
+           Place_Trunk(CAR_RENO_STABLES_HEX, CAR_RENO_STABLES_ELEV);
+           set_obj_visibility(self_obj,0);
+       end
+       else if (car_current_town == AREA_SIERRA_ARMY_BASE) then begin
+           if (cur_map_index == MAP_SIERRA_BATTLE) then begin
+               Place_Trunk(CAR_SIERRA_ARMY_BASE_HEX,CAR_SIERRA_ARMY_BASE_ELEV);
+               set_obj_visibility(self_obj,0);
+           end
+           else begin
+               set_obj_visibility(self_obj,1);
+           end
+       end
+
+       else if (car_current_town == AREA_VAULT_15) then begin
+           if (cur_map_index == MAP_THE_SQUAT_A) then begin
+               Place_Trunk(CAR_VAULT_15_HEX,CAR_VAULT_15_ELEV);
+               set_obj_visibility(self_obj,0);
+           end
+           else begin
+               set_obj_visibility(self_obj,1);
+           end
+       end
+
+       else if (car_current_town == AREA_NCR) then begin
+           if (cur_map_index == MAP_NCR_BAZAAR) then begin
+               Place_Trunk(CAR_NCR_HEX,CAR_NCR_ELEV);
+               set_obj_visibility(self_obj,0);
+           end
+           else begin
+               set_obj_visibility(self_obj,1);
+           end
+       end
+
+       else if (car_current_town == AREA_VAULT_13) then begin
+           debug_msg("Car's Area == Vault 13. Trunk should appear on the entrance.");
+           if (cur_map_index == MAP_VAULT_13_ENTRANCE) then begin
+               Place_Trunk(CAR_VAULT_13_HEX,CAR_VAULT_13_ELEV);
+               set_obj_visibility(self_obj,0);
+           end
+           else begin
+               set_obj_visibility(self_obj,1);
+           end
+       end
+
+       else if (car_current_town == AREA_MILITARY_BASE) then begin
+           if (cur_map_index == MAP_MILITARY_BASE_ENTRANCE) then begin
+               Place_Trunk(CAR_MILITARY_BASE_HEX,CAR_MILITARY_BASE_ELEV);
+               set_obj_visibility(self_obj,0);
+           end
+           else begin
+               set_obj_visibility(self_obj,1);
+           end
+       end
+
+       else if (car_current_town == AREA_REDDING) then begin
+           if (cur_map_index == MAP_REDDING_DOWNTOWN) then begin
+               Place_Trunk(CAR_REDDING_HEX,CAR_REDDING_ELEV);
+               set_obj_visibility(self_obj,0);
+           end
+           else begin
+               set_obj_visibility(self_obj,1);
+           end
+       end
+
+       else if (car_current_town == AREA_SAN_FRANCISCO) then begin
+           if (cur_map_index == MAP_SAN_FRAN_CHINATOWN) then begin
+               Place_Trunk(CAR_SAN_FRANCISCO_HEX,CAR_SAN_FRANCISCO_ELEV);
+               set_obj_visibility(self_obj,0);
+           end
+           else begin
+               set_obj_visibility(self_obj,1);
+           end
+       end
+
+       else if (car_current_town == AREA_NAVARRO) then begin
+           Place_Trunk(CAR_NAVARRO_HEX,CAR_NAVARRO_ELEV);
+           set_obj_visibility(self_obj,0);
+       end
+
+       else if (car_current_town == AREA_THE_ENCLAVE) then begin
+           set_obj_visibility(self_obj,1);
+       end
+
+       else if (car_current_town == AREA_GHOST_TOWN) then begin
+           if (cur_map_index == MAP_GHOST_FARM) then begin
+               Place_Trunk(CAR_GHOST_TOWN_HEX,CAR_GHOST_TOWN_ELEV);
+               set_obj_visibility(self_obj,0);
+           end
+           else begin
+               set_obj_visibility(self_obj,1);
+           end
+       end
+
+       else if (car_current_town == AREA_CAR_OUTTA_GAS) then begin
+           Place_Trunk(CAR_CAR_OUTTA_GAS_HEX,CAR_CAR_OUTTA_GAS_ELEV);
+           set_obj_visibility(self_obj,0);
+       end
+
+       else if (car_current_town == AREA_ARROYO_DESTROYED) then begin
+           Place_Trunk(CAR_ARROYO_DESTROYED_HEX,CAR_ARROYO_DESTROYED_ELEV);
+           set_obj_visibility(self_obj,0);
+       end
+
+       else if (car_current_town == AREA_KLAMATH_TOXIC_CAVES) then begin
+           Place_Trunk(CAR_KLAMATH_TOXIC_CAVES_HEX,CAR_KLAMATH_TOXIC_CAVES_ELEV);
+           set_obj_visibility(self_obj,0);
+       end
+
+       else if (car_current_town == AREA_DEN_SLAVE_RUN) then begin
+           //Place_Trunk();
+           set_obj_visibility(self_obj,0);
+       end
+
+       else if (car_current_town == AREA_RAIDERS) then begin
+           if (cur_map_index == MAP_RAIDERS_CAMP1) then begin
+               if (global_var(GVAR_RAIDERS_CAR_ELEVATION) == 0) then begin
+                   Place_Trunk(CAR_RAIDERS_CAMP_HEX_NORMAL,0);
+                   set_obj_visibility(self_obj,0);
+               end
+               else if (global_var(GVAR_RAIDERS_CAR_ELEVATION) == 1)  then begin
+                   Place_Trunk(CAR_RAIDERS_CAMP_HEX_SECRET, 1);
+                   set_obj_visibility(self_obj,0);
+               end
+               else
+                   set_obj_visibility(self_obj,1);
+/*               if( global_var( GVAR_RAIDERS_CAR_ELEVATION ) == dude_elevation ) then begin
+                  if( dude_elevation == 0 ) then begin
+                     Place_Trunk( CAR_RAIDERS_CAMP_HEX_NORMAL, 0 );
+                  end
+                  else begin
+                     Place_Trunk( CAR_RAIDERS_CAMP_HEX_SECRET, 1 );
+                  end
+                  set_obj_visibility(self_obj,0);
+               end
+               else
+                  set_obj_visibility(self_obj,1);
+*/
+           end
+           else begin
+               set_obj_visibility(self_obj,1);
+           end
+       end
+
+       else if (car_current_town == AREA_RND_DESERT) then begin
+           if (cur_map_index == MAP_RND_DESERT_1) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_DESERT_2) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_DESERT_3) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_DESERT4) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_DESERT5) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_DESERT6) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_DESERT7) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_DESERT_8) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_DESERT_9) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_DESERT_10) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+       end
+
+       else if (car_current_town == AREA_RND_MOUNTAIN) then begin
+           if (cur_map_index == MAP_RND_MOUNTAIN1) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_MOUNTAIN2) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_CAVERN0) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_CAVERN1) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_CAVERN2) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_CAVERN3) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_CAVERN4) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_CAVERN5) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_MOUNTAIN_3) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_MOUNTAIN_4) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+       end
+
+       else if (car_current_town == AREA_RND_CITY) then begin
+           if (cur_map_index == MAP_RND_CITY1) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_CITY_2) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_CITY_3) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_CITY_4) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_CITY_5) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_CITY_6) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_CITY_7) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_CITY_8) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+       end
+
+       else if (car_current_town == AREA_RND_COAST) then begin
+           if (cur_map_index == MAP_RND_COAST1) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_COAST2) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_COAST3) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_COAST4) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_COAST5) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_COAST6) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_COAST7) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_COAST8) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_COAST9) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+           else if (cur_map_index == MAP_RND_COAST_10) then begin
+               //Place_Trunk();
+               set_obj_visibility(self_obj,0);
+           end
+       end
+
+       else if (car_current_town == AREA_SPECIAL_RND_WHALE) then begin
+           //Place_Trunk();
+           set_obj_visibility(self_obj,0);
+       end
+
+       else if (car_current_town == AREA_SPECIAL_RND_WOODSMAN) then begin
+           //Place_Trunk();
+           set_obj_visibility(self_obj,0);
+       end
+
+       else if (car_current_town == AREA_SPECIAL_RND_HEAD) then begin
+           //Place_Trunk();
+           set_obj_visibility(self_obj,0);
+       end
+
+       else if (car_current_town == AREA_SPECIAL_RND_SHUTTLE) then begin
+           //Place_Trunk();
+           set_obj_visibility(self_obj,0);
+       end
+
+       else if (car_current_town == AREA_SPECIAL_RND_UNWASHED) then begin
+           //Place_Trunk();
+           set_obj_visibility(self_obj,0);
+       end
+
+       else if (car_current_town == AREA_SPECIAL_RND_BRIDGE) then begin
+           //Place_Trunk();
+           set_obj_visibility(self_obj,0);
+       end
+
+       else if (car_current_town == AREA_SPECIAL_RND_CAFE) then begin
+           //Place_Trunk();
+           set_obj_visibility(self_obj,0);
+       end
+
+       else if (car_current_town == AREA_SPECIAL_RND_HOLY1) then begin
+           //Place_Trunk();
+           set_obj_visibility(self_obj,0);
+       end
+
+       else if (car_current_town == AREA_SPECIAL_RND_HOLY2) then begin
+           //Place_Trunk();
+           set_obj_visibility(self_obj,0);
+       end
+
+       else if (car_current_town == AREA_SPECIAL_RND_GUARDIAN) then begin
+           //Place_Trunk();
+           set_obj_visibility(self_obj,0);
+       end
+
+       else if (car_current_town == AREA_SPECIAL_RND_TOXIC) then begin
+           //Place_Trunk();
+           set_obj_visibility(self_obj,0);
+       end
+
+       else if (car_current_town == AREA_SPECIAL_RND_PARIAH) then begin
+           //Place_Trunk();
+           set_obj_visibility(self_obj,0);
+       end
+
+       else if (car_current_town == AREA_SPECIAL_RND_MAD_COW) then begin
+           //Place_Trunk();
+           set_obj_visibility(self_obj,0);
+       end
+
+       else if (car_current_town == AREA_CARAVAN_ENCOUNTER) then begin
+           //Place_Trunk();
+           set_obj_visibility(self_obj,0);
+       end
+
+       else if (car_current_town == AREA_FAKE_VAULT_13A) then begin
+       //Note this map is a copy of vualt13 entrance
+           debug_msg("Car's Area == Vault 13 A. Trunk should appear on the entrance.");
+           if (cur_map_index == MAP_RND_CAVERN_6 or cur_map_index == MAP_RND_CAVERN_7) then begin
+               Place_Trunk(CAR_VAULT_13_HEX,CAR_VAULT_13_ELEV);
+               set_obj_visibility(self_obj,0);
+           end
+           else begin
+               set_obj_visibility(self_obj,1);
+           end
+       end
+
+       else if (car_current_town == AREA_FAKE_VAULT_13B) then begin
+       //Note this map is a copy of vualt13 entrance
+           debug_msg("Car's Area == Vault 13 B. Trunk should appear on the entrance.");
+           if (cur_map_index == MAP_RND_CAVERN_6 or cur_map_index == MAP_RND_CAVERN_7) then begin
+               Place_Trunk(CAR_VAULT_13_HEX,CAR_VAULT_13_ELEV);
+               set_obj_visibility(self_obj,0);
+           end
+           else begin
+               set_obj_visibility(self_obj,1);
+           end
+       end
+
+       else if (car_current_town == AREA_SHADOW_MAPS) then begin
+           call Shadow_Area;
+       end
+   end
+end
+
+procedure map_update_p_proc begin
+   if ((global_var(GVAR_PLAYER_GOT_CAR) != 0) and (local_var(LVAR_In_Party) == 0) and (Trunk_Ptr == 0)) then begin
+       inc_local_var(LVAR_In_Party);
+       party_add(self_obj);
+       debug_msg("CAR TRUNK: Added self to party. "+obj_pid(Trunk_Ptr));
+   end
+end
+
+
+procedure Shadow_Area begin
+   if (cur_map_index == MAP_RND_COAST_11) then begin
+       //Place_Trunk();
+       set_obj_visibility(self_obj,0);
+   end
+   else if (cur_map_index == MAP_RND_COAST_12) then begin
+       //Place_Trunk();
+       set_obj_visibility(self_obj,0);
+   end
+   else if (cur_map_index == MAP_RND_DESERT_11) then begin
+       //Place_Trunk();
+       set_obj_visibility(self_obj,0);
+   end
+   else if (cur_map_index == MAP_RND_DESERT_12) then begin
+       //Place_Trunk();
+       set_obj_visibility(self_obj,0);
+   end
+   else if (cur_map_index == MAP_RND_CAVERN_5) then begin
+       //Place_Trunk();
+       set_obj_visibility(self_obj,0);
+   end
+   else if (cur_map_index == MAP_RND_MOUNTAIN_5) then begin
+       //Place_Trunk();
+       set_obj_visibility(self_obj,0);
+   end
+   else if (cur_map_index == MAP_RND_MOUNTAIN_6) then begin
+       //Place_Trunk();
+       set_obj_visibility(self_obj,0);
+   end
+   else if(cur_map_index == MAP_IN_GAME_MOVIE1) then begin
+      set_obj_visibility(self_obj,0);
+   end
+end
+
+procedure Raiders_Place begin
+   if (global_var(GVAR_RAIDERS_CAR_ELEVATION) == 0) then begin
+       Place_Trunk(CAR_RAIDERS_CAMP_HEX_NORMAL,0);
+       set_obj_visibility(self_obj,0);
+   end
+   else if (global_var(GVAR_RAIDERS_CAR_ELEVATION) == 1)  then begin
+       Place_Trunk(CAR_RAIDERS_CAMP_HEX_SECRET, 1);
+       set_obj_visibility(self_obj,0);
+   end
+   else
+       set_obj_visibility(self_obj,1);
+end

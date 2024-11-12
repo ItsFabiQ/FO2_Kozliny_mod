@@ -1,0 +1,76 @@
+/*
+	Copyright 1998-2003 Interplay Entertainment Corp.  All rights reserved.
+*/
+
+/*
+        Name: Random Bridge encounter
+        Location: Random
+        Description:
+
+        Log:
+           Please note any changes that have been made to the file in Updated. Then comment
+           the code which you have changed/altered/commented out. Please, do not delete any
+           code which was written.
+
+           Created: April 14, 1998
+
+           Updated:
+*/
+
+/* Include Files */
+
+/* Note, the Following Lines need to be in this order so that
+   the script will be compilable. The define Name is referenced
+   in a module from define.h and used in command.h. Please do
+   not change the ordering.
+        -rwh2   11/13/97
+*/
+#include "..\headers\define.h"
+#include "..\headers\updatmap.h"
+#include "..\headers\RndBridg.h"
+
+#define NAME                    SCRIPT_RNDBRIDG
+
+#include "..\headers\command.h"
+
+procedure start;
+procedure map_enter_p_proc;
+procedure map_update_p_proc;
+procedure map_exit_p_proc;
+
+procedure Initial_Inven;
+
+
+procedure map_exit_p_proc begin
+   if (global_var(GVAR_PLAYER_GOT_CAR) != 0 and car_current_town == AREA_SPECIAL_RND_BRIDGE) then begin
+       car_give_to_party;
+   end
+end
+
+procedure start begin
+end
+
+procedure map_enter_p_proc begin
+   set_global_var(GVAR_SPECIAL_ENCOUNTER_BRIDGE,1);
+
+   override_map_start_hex(26318,0,0);
+
+   if ((map_var(MVAR_Made_Car) == 0) and (global_var(GVAR_PLAYER_GOT_CAR) != 0) and (car_current_town == AREA_SPECIAL_RND_BRIDGE)) then begin
+       set_map_var(MVAR_Made_Car,1);
+       Create_Car(CAR_RND_BRIDGE_HEX, 0)
+   end
+   else if ((map_var(MVAR_Made_Car) == 1) and (car_current_town != AREA_SPECIAL_RND_BRIDGE)) then begin
+       set_map_var(MVAR_Made_Car,0);
+       Dest_Car(CAR_RND_BRIDGE_HEX,0)
+   end
+
+   Lighting;
+end
+
+procedure map_update_p_proc begin
+   Lighting;
+end
+
+
+procedure Initial_Inven begin
+end

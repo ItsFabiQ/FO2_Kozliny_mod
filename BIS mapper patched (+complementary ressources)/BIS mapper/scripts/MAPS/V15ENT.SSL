@@ -1,0 +1,88 @@
+/*
+	Copyright 1998-2003 Interplay Entertainment Corp.  All rights reserved.
+*/
+
+/*
+        Map Script for Sierra Army Base, Outside area
+*/
+
+#include "..\headers\define.h"
+#include "..\headers\updatmap.h"
+#include "..\headers\v15ent.h"
+
+#define NAME                    SCRIPT_V15ENT
+
+#include "..\headers\command.h"
+
+#define CHECK_DUDE_V15ENT_LEVEL  (2)
+
+
+#define place_on_inn(the_tile, the_elev, the_rot)                                \
+         override_map_start_hex(the_tile, the_elev, the_rot);                    \
+         set_map_start((the_tile % 200), (the_tile / 200), the_elev, the_rot)
+
+
+export variable i_girl_obj;
+
+procedure start;
+procedure map_enter_p_proc;
+procedure map_update_p_proc;
+
+procedure start begin
+   i_girl_obj := -1;
+end
+
+procedure map_enter_p_proc begin
+   Lighting;
+   debug_msg("V15SENT: Darion_deal " + global_var(GVAR_V15_NCR_DEAL) + " diaron_dead " + global_var(GVAR_NCR_V15_DARION_DEAD));
+   if (global_var(GVAR_V15_NCR_DEAL) == 2 and global_var(GVAR_NCR_V15_DARION_DEAD)) then begin
+      override_map_start_hex(29525, 1, 0);
+      add_timer_event(dude_obj, 0, CHECK_DUDE_V15ENT_LEVEL);
+   end else begin
+      override_map_start_hex(29525, 0, 0);
+   end
+
+   debug_msg("V15ENT: map_var(MVAR_Made_Car): " + map_var(MVAR_Made_Car) + " global_var(GVAR_PLAYER_GOT_CAR): " + global_var(GVAR_PLAYER_GOT_CAR) + "V15AREA: " + AREA_VAULT_15);
+   if (global_var(GVAR_V15_NCR_DEAL) == 2 and global_var(GVAR_NCR_V15_DARION_DEAD)) then begin
+      if (map_var(MVAR_Did_Deal_Switch) == 0) then begin
+         if ((global_var(GVAR_PLAYER_GOT_CAR) != 0)) then begin
+            if (car_current_town == AREA_VAULT_15) then begin
+               if (map_var(MVAR_Made_Car)) then begin
+                  Dest_Car(CAR_VAULT_15_HEX,CAR_VAULT_15_ELEV)
+                  Create_Car(CAR_VAULT_15_DEAL_HEX,CAR_VAULT_15_DEAL_ELEV)
+               end else begin
+                  Create_Car(CAR_VAULT_15_DEAL_HEX,CAR_VAULT_15_DEAL_ELEV)
+               end
+            end else begin
+               if (map_var(MVAR_Made_Car)) then begin
+                  set_map_var(MVAR_Made_Car, 0);
+                  Dest_Car(CAR_VAULT_15_HEX,CAR_VAULT_15_ELEV)
+               end
+            end
+            set_map_var(MVAR_Did_Deal_Switch, 1);
+         end
+      end else begin
+         if ((map_var(MVAR_Made_Car) == 0) and (global_var(GVAR_PLAYER_GOT_CAR) != 0) and (car_current_town == AREA_VAULT_15)) then begin
+            set_map_var(MVAR_Made_Car,1);
+            Create_Car(CAR_VAULT_15_DEAL_HEX,CAR_VAULT_15_DEAL_ELEV)
+         end
+         else if ((map_var(MVAR_Made_Car) == 1) and (car_current_town != AREA_VAULT_15)) then begin
+            set_map_var(MVAR_Made_Car,0);
+            Dest_Car(CAR_VAULT_15_DEAL_HEX,CAR_VAULT_15_DEAL_ELEV)
+         end
+      end
+   end else begin
+      if ((map_var(MVAR_Made_Car) == 0) and (global_var(GVAR_PLAYER_GOT_CAR) != 0) and (car_current_town == AREA_VAULT_15)) then begin
+         set_map_var(MVAR_Made_Car,1);
+         Create_Car(CAR_VAULT_15_HEX,CAR_VAULT_15_ELEV)
+      end
+      else if ((map_var(MVAR_Made_Car) == 1) and (car_current_town != AREA_VAULT_15)) then begin
+         set_map_var(MVAR_Made_Car, 0);
+         Dest_Car(CAR_VAULT_15_HEX,CAR_VAULT_15_ELEV)
+      end
+   end
+end
+
+procedure map_update_p_proc begin
+   Lighting;
+end
